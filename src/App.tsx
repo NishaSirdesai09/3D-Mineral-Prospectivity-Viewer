@@ -4,6 +4,7 @@ import { DEFAULT_SETTINGS, RESOLUTIONS, type Settings } from './data/settings';
 import { Scene, type ViewName, type ViewRequest } from './scene/Scene';
 import { Histogram, Legend, RangeSlider, Section, Segmented, Slider, Toggle } from './ui/controls';
 import { FpsMeter, Tooltip } from './ui/overlays';
+import { hasSeenInfo, InfoPanel } from './ui/InfoPanel';
 
 const fmt = new Intl.NumberFormat('en-US');
 const INITIAL = { nx: 40, seed: 7 };
@@ -15,6 +16,7 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [view, setView] = useState<ViewRequest>({ name: 'iso', nonce: 0 });
   const [panelOpen, setPanelOpen] = useState(() => window.innerWidth > 720);
+  const [infoOpen, setInfoOpen] = useState(() => !hasSeenInfo());
 
   // Regenerate off the input event so the "Generating" state can paint first.
   useEffect(() => {
@@ -42,6 +44,9 @@ export default function App() {
           <div>
             <h1>Prospectivity Viewer</h1>
             <p className="subtitle">Synthetic Cu–Au block · 1 × 1 km × 500 m</p>
+            <button className="link-btn about-link" onClick={() => setInfoOpen(true)}>
+              What am I looking at?
+            </button>
           </div>
           <button className="icon-btn panel-toggle" onClick={() => setPanelOpen((o) => !o)} aria-expanded={panelOpen} aria-label="Toggle controls">
             {panelOpen ? '–' : '+'}
@@ -132,6 +137,7 @@ export default function App() {
 
       <FpsMeter total={volume.stats.total} />
       <Tooltip volume={volume} />
+      <InfoPanel open={infoOpen} onClose={() => setInfoOpen(false)} />
       {busy && <div className="busy">Generating {RESOLUTIONS.find((r) => r.nx === target.nx)?.note}…</div>}
       <p className="hint-bar">Drag to orbit · scroll to zoom · right-drag to pan · hover a cell to inspect</p>
     </div>

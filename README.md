@@ -2,7 +2,7 @@
 
 A small 3D viewer for a mineral prospectivity model, built on synthetic data. It is a minimal version of the problem a product like Carta has to solve: show **where the model thinks mineralisation is** and **how much to trust it** at the same time, in a form a geologist can slice and inspect.
 
-![demo](docs/demo.gif)
+**Live:** https://3d-mineral-prospectivity-viewer.vercel.app
 
 React · TypeScript · Vite · React Three Fiber (Three.js) · one instanced draw call · Web Worker depth sort
 

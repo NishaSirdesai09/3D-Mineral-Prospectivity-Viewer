@@ -4,8 +4,6 @@ A small 3D viewer for a mineral prospectivity model, built on synthetic data. It
 
 ![demo](docs/demo.gif)
 
-**Live:** _add your Vercel URL here_
-
 React · TypeScript · Vite · React Three Fiber (Three.js) · one instanced draw call · Web Worker depth sort
 
 ---
@@ -73,14 +71,6 @@ npm run dev
 
 ```bash
 npm run build && npm run preview
-```
-
-## Deploy (Vercel)
-
-Vercel detects Vite automatically (build `npm run build`, output `dist`). Either import the repo at vercel.com/new, or:
-
-```bash
-npx vercel --prod
 ```
 
 ## Project layout
